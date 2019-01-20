@@ -9,24 +9,32 @@ var url;
 async function getData()
 {
 	var word = document.getElementById("searchBox").value;
-	console.log(word);
-	url ="https://dictionaryapi.com/api/v3/references/learners/json/"+word
-	+"?key=6b5f2059-92e7-4761-b787-d7ff3514ae73";
-	const def = await fetch(url);
- 	const jsonobj = await def.json();
- 	var partOfSpeech = jsonobj[0].fl;
- 	var defs= [];
- 	defs=jsonobj[0].shortdef;
- 	var output="";
- 	for (var i = 0; i < defs.length; i++) 
+	if(word=="" || word==null)
 	{
-  		output = output + '<li class="define">'+defs[i]+'</li>';
+		document.getElementsByClassName("errorMsg")[0].innerHTML='Please enter any word.';
 	}
-    document.getElementById("result").style.display="block";
-    document.getElementById("title").style.display="block";
-    document.getElementById("title").innerHTML=word;
-    document.getElementById("def").style.display="block";
-    document.getElementById("partOfSpeech").innerHTML=partOfSpeech;
-    document.getElementById("list").innerHTML=output;
+	else
+	{
+		url ="https://dictionaryapi.com/api/v3/references/learners/json/"+word
+		+"?key=6b5f2059-92e7-4761-b787-d7ff3514ae73";
+		const def = await fetch(url);
+	 	const jsonobj = await def.json();
+	 	var partOfSpeech = jsonobj[0].fl;
+	 	var defs= [];
+	 	defs=jsonobj[0].shortdef;
+	 	var output="";
+	 	for (var i = 0; i < defs.length; i++) 
+		{
+	  		output = output + '<li class="define">'+defs[i]+'</li>';
+		}
+	    document.getElementById("result").style.display="block";
+	    document.getElementById("title").style.display="block";
+	    document.getElementById("title").innerHTML=word;
+	    document.getElementById("def").style.display="block";
+	    document.getElementById("partOfSpeech").innerHTML=partOfSpeech;
+	    document.getElementById("list").innerHTML=output;
+	}
+	// console.log(word);
+	
 
 }
