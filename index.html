@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="UTF-8">
+	<title>WhatsTheWord</title>
+	<link rel="stylesheet" type="text/css" href="style.css">
+</head>
+<body>
+	<header>
+    	<h1 class="center">What's The Word?</h1>
+	</header>
+
+	<form>
+		<label for="searchBox">Enter Word</label>
+		<input type="text" name="word" placeholder="Search for any word" id="searchBox">
+		<button onclick="getData()">Search</button>
+	</form>
+	<div id="result">
+		<div id="title">Word</div>
+		<div id="def">Def</div>
+	</div>
+	<script src="app.js"></script>
+</body>
+</html>
