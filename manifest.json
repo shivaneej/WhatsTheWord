@@ -3,7 +3,7 @@
   "short_name": "WTW",
   "theme_color": "#6f1e51",
   "background_color": "#6f1e51",
-  "display": "browser",
+  "display": "standalone",
   "orientation": "portrait",
   "Scope": "/",
   "start_url": "/",
