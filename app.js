@@ -62,6 +62,29 @@ async function getData()
 
 }
 
+
+function displayNotification(mhead,mbody) {
+    if (Notification.permission == 'granted') {
+      navigator.serviceWorker.getRegistration().then(function(reg) {
+        var options = {
+          body: mbody,
+          icon: './images/icons/icon-96x96.png',
+          vibrate: [100, 50, 100],
+          data: {
+            dateOfArrival: Date.now(),
+            primaryKey: 1
+          },
+          actions: [
+            {action: 'explore', title: 'retry'},
+            {action: 'close', title: 'close'}
+          ]
+        };
+        reg.showNotification(mhead, options);
+      });
+    }
+}
+
+
 window.addEventListener('load', async e => {
     console.log(navigator.onLine);
     if ('serviceWorker' in navigator) {
