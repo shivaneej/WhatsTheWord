@@ -1,20 +1,32 @@
-var api_url;
 window.onload = function()
 {
 	document.getElementById("result").style.display="none";
+	document.getElementById("title").style.display="none";
+	document.getElementById("def").style.display="none";
 }
-function getData()
+
+var url;
+async function getData()
 {
-	var sb = document.getElementById("searchBox");
-	var word = sb.value;
-	api_url = 'https://wordsapiv1.p.mashape.com/words/'+word+'/definitions';
-	fetch(api_url);
-}
-async function fetch(value)
-{
-	const def = await fetch(value);
-    const json = await def.json();
+	var word = document.getElementById("searchBox").value;
+	console.log(word);
+	url ="https://dictionaryapi.com/api/v3/references/learners/json/"+word
+	+"?key=6b5f2059-92e7-4761-b787-d7ff3514ae73";
+	const def = await fetch(url);
+ 	const jsonobj = await def.json();
+ 	var partOfSpeech = jsonobj[0].fl;
+ 	var defs= [];
+ 	defs=jsonobj[0].shortdef;
+ 	var output="";
+ 	for (var i = 0; i < defs.length; i++) 
+	{
+  		output = output + '<li class="define">'+defs[i]+'</li>';
+	}
     document.getElementById("result").style.display="block";
-    document.getElementById("title").innerHTML = json.word;
-    // document.getElementById("def").innerHTML = json.definitions;
+    document.getElementById("title").style.display="block";
+    document.getElementById("title").innerHTML=word;
+    document.getElementById("def").style.display="block";
+    document.getElementById("partOfSpeech").innerHTML=partOfSpeech;
+    document.getElementById("list").innerHTML=output;
+
 }

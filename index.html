@@ -10,14 +10,21 @@
     	<h1 class="center">What's The Word?</h1>
 	</header>
 
-	<form>
+	<div id="form">
 		<label for="searchBox">Enter Word</label>
 		<input type="text" name="word" placeholder="Search for any word" id="searchBox">
 		<button onclick="getData()">Search</button>
-	</form>
+	</div>
 	<div id="result">
 		<div id="title">Word</div>
-		<div id="def">Def</div>
+		<div id="def">
+			<i><div id="partOfSpeech"></div></i>
+			<div id="defs">
+				<br>
+				<ul style="circle" id="list">
+				</ul>
+			</div>
+		</div>
 	</div>
 	<script src="app.js"></script>
 </body>
