@@ -8,6 +8,9 @@ window.onload = function()
 var url;
 async function getData()
 {
+	document.getElementById("list").innerHTML="";
+	document.getElementById("title").innerHTML="";
+	document.getElementById("partOfSpeech").innerHTML="";
 	var word = document.getElementById("searchBox").value;
 	if(word=="" || word==null)
 	{
@@ -19,22 +22,42 @@ async function getData()
 		+"?key=6b5f2059-92e7-4761-b787-d7ff3514ae73";
 		const def = await fetch(url);
 	 	const jsonobj = await def.json();
-	 	var partOfSpeech = jsonobj[0].fl;
-	 	var defs= [];
-	 	defs=jsonobj[0].shortdef;
-	 	var output="";
-	 	for (var i = 0; i < defs.length; i++) 
-		{
-	  		output = output + '<li class="define">'+defs[i]+'</li>';
-		}
+	 	console.log(typeof(jsonobj[0]));
+	 	if(typeof(jsonobj[0])=="string")
+	 	{
+	 		var sugg = jsonobj[0];
+			for (var i = 1; i < jsonobj.length ; i++) 
+			{
+			 	sugg = sugg + ', '+jsonobj[i];
+			}
+			console.log(sugg);
+			var show = document.getElementsByClassName("noRes")[0];
+			show.style.display="block";
+	 		show.innerHTML = 'Sorry! No results found. Did you mean any of '+
+	 		sugg+ '?';
+	 	}
+	 	else
+	 	{
+	 		var partOfSpeech = jsonobj[0].fl;
+	 		console.log(typeof(jsonobj[0]));
+		 	var defs= [];
+		 	defs=jsonobj[0].shortdef;
+	 		var output="";
+		 	for (var i = 0; i < defs.length; i++) 
+			{
+		  		output = output + '<li class="define">'+defs[i]+'</li>';
+			}
+		    document.getElementById("partOfSpeech").innerHTML=partOfSpeech;
+		    document.getElementById("list").innerHTML=output;
+	 	}
+	 	
 	    document.getElementById("result").style.display="block";
 	    document.getElementById("title").style.display="block";
 	    document.getElementById("title").innerHTML=word;
 	    document.getElementById("def").style.display="block";
-	    document.getElementById("partOfSpeech").innerHTML=partOfSpeech;
-	    document.getElementById("list").innerHTML=output;
+	   
 	}
-	// console.log(word);
+	
 	
 
 }
