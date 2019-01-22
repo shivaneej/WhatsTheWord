@@ -49,7 +49,7 @@ async function cacheData(request)
 
 async function networkFirst(request) 
 {
-    const cache = await caches.open('dynamic-qoute');
+    const cache = await caches.open('dynamic-def');
 
     try {
         const response = await fetch(request);
