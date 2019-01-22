@@ -68,7 +68,7 @@ function displayNotification(mhead,mbody) {
       navigator.serviceWorker.getRegistration().then(function(reg) {
         var options = {
           body: mbody,
-          icon: './images/icons/icon-96x96.png',
+          icon: './icons/icon-96x96.png',
           vibrate: [100, 50, 100],
           data: {
             dateOfArrival: Date.now(),
