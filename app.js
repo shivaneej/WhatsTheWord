@@ -8,9 +8,13 @@ window.onload = function()
 var url;
 async function getData()
 {
+	document.getElementById("result").style.display="none";
+	document.getElementById("title").style.display="none";
+	document.getElementById("def").style.display="none";
 	document.getElementById("list").innerHTML="";
 	document.getElementById("title").innerHTML="";
 	document.getElementById("partOfSpeech").innerHTML="";
+	document.getElementsByClassName("noRes")[0].innerHTML = "";
 	var word = document.getElementById("searchBox").value;
 	if(word=="" || word==null)
 	{
@@ -22,7 +26,7 @@ async function getData()
 		+"?key=6b5f2059-92e7-4761-b787-d7ff3514ae73";
 		const def = await fetch(url);
 	 	const jsonobj = await def.json();
-	 	console.log(typeof(jsonobj[0]));
+	 	console.log(jsonobj[0]);
 	 	if(typeof(jsonobj[0])=="string")
 	 	{
 	 		var sugg = jsonobj[0];
@@ -51,7 +55,7 @@ async function getData()
 		    document.getElementById("list").innerHTML=output;
 	 	}
 	 	
-	    document.getElementById("result").style.display="block";
+	    document.getElementById("result").style.display="flex";
 	    document.getElementById("title").style.display="block";
 	    document.getElementById("title").innerHTML=word;
 	    document.getElementById("def").style.display="block";
