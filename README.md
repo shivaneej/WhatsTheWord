@@ -8,4 +8,7 @@ It was developed using:
 * [Merriam-Webster Dictionary API](https://www.dictionaryapi.com/)
 * HTML, CSS, JavaScript
 
-
+## Demo
+<div align="center">
+  <img src="demo.gif" width="250px">
+</div>
